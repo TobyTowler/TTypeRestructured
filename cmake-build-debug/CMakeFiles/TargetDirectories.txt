@@ -1,0 +1,3 @@
+/home/toby/CLionProjects/TTypeRestructured/cmake-build-debug/CMakeFiles/TTypeRestructured.dir
+/home/toby/CLionProjects/TTypeRestructured/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/toby/CLionProjects/TTypeRestructured/cmake-build-debug/CMakeFiles/rebuild_cache.dir
