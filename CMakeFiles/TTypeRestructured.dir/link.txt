@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/TTypeRestructured.dir/main.cpp.o CMakeFiles/TTypeRestructured.dir/TType.cpp.o CMakeFiles/TTypeRestructured.dir/nCursesConfig.cpp.o CMakeFiles/TTypeRestructured.dir/Printer.cpp.o CMakeFiles/TTypeRestructured.dir/Calculate.cpp.o -o TTypeRestructured  -lcurses /usr/lib64/libform.so 
