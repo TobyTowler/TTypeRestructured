@@ -37,6 +37,7 @@ void printSettings(TType &obj){
 
     int cha = getch();
 
+    //Changing file
     if(toupper(cha) == 'C'){
         printw("Enter file name: ");
         echo();
@@ -52,6 +53,8 @@ void printSettings(TType &obj){
         noecho();
         obj.setWords(str);
     }
+
+    //Title screen
     else if(toupper(cha) == 'T'){
         clear();
         printTitle();

@@ -1,6 +1,5 @@
 #include <sstream>
 #include <fstream>
-#include "iostream"
 #include <cstring>
 #include "TType.h"
 #include "ncurses.h"
