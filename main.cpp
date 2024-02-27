@@ -1,25 +1,22 @@
-#include <iostream>
-#include "ncurses.h"
+#include "Calculate.h"
+#include "Printer.h"
 #include "TType.h"
 #include "nCursesConfig.h"
-#include "Printer.h"
-#include "Calculate.h"
 
-int main()
-{
-    nCursesCFG();
+int main() {
+  nCursesCFG();
 
-    printTitle();
+  printTitle();
 
-    TType game;
+  TType game;
 
-    while(true){
-        game.clearInput();  //reset input for each game
+  while (true) {
+    game.clearInput(); // reset input for each game
 
-        printSettings(game);
+    printSettings(game);
 
-        game.run();
+    game.run();
 
-        calculateScore(game);
-    }
+    calculateScore(game);
+  }
 }

@@ -1,6 +1,6 @@
 # TType - Rebuilt to be object-oriented
 # About 
-- my first large unguided project (technially TType was but this is a contuation)
+- my first large unguided project (technicall TType was but this is a contiuation)
 - very open to any advice
 - can use any .txt file as long its in the working directory
 

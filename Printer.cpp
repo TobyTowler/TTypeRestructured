@@ -41,7 +41,7 @@ void printSettings(TType &obj)
     // init_pair(251, 254, COLOR_BLACK);
 
     // attron(COLOR_PAIR(251));
-    printw(" 1. press 'Any key' to run test \n");
+    printw(" 1. press 'R' to run test \n");
     // attroff(COLOR_PAIR(254));
     // attron(COLOR_PAIR(253));
     printw(" 2. press 'C' to change test text \n");
@@ -54,36 +54,49 @@ void printSettings(TType &obj)
     // attroff(COLOR_PAIR(251));
     refresh();
 
-    int cha = getch();
+    int cha;
+    bool play = false;
 
-    // Changing file
-    if (toupper(cha) == 'C')
+    while (!play)
     {
-        printw("Enter file name: ");
-        echo();
-        string str;
-        while (true)
+
+        cha = getch();
+
+        if (toupper(cha) == 'R')
         {
-            cha = getch();
-            if (cha == 10)
-                break; // 10 = enter key
-            else
-            {
-                str += cha;
-                refresh();
-            }
+            play = true;
         }
-        noecho();
-        obj.setWords(str);
-    }
 
-    // Title screen
-    else if (toupper(cha) == 'T')
-    {
-        clear();
-        printTitle();
-        printSettings(obj);
-        obj.clearInput();
-        obj.clearWords();
+        // Changing file
+        if (toupper(cha) == 'C')
+        {
+            play = true;
+            printw("Enter file name: ");
+            echo(); // to see what user is typing turned off again further down
+            string str;
+            while (true)
+            {
+                cha = getch();
+                if (cha == 10)
+                    break; // 10 = enter key
+                else
+                {
+                    str += cha;
+                    refresh();
+                }
+            }
+            noecho();
+            obj.setWords(str);
+        }
+
+        // Title screen
+        else if (toupper(cha) == 'T')
+        {
+            clear();
+            printTitle();
+            printSettings(obj);
+            obj.clearInput();
+            obj.clearWords();
+        }
     }
 }

@@ -9,11 +9,12 @@ void calculateScore(TType obj){
         if(obj.getWords().at(i) == obj.getInput().at(i)) {right++;}
     }
 
-    printw("\n\nYour accuracy was %0.f%%", double(right)/double(obj.getWords().size())*100);
+    printw("\n\n--GAME OVER-- \nYou scored;\n");
+    printw("  Accuracy: %0.f%%        ", double(right)/double(obj.getWords().size())*100);
 
     //Calculate WPM
-    //chrono::duration<double> wpm = elapsed/ calculateWords(char words[], maxSize);
-    printw("\nWell done! \n\n");
+    int WPM;
+    printw("WPM: %d\n\n", WPM);
 
     refresh();
 }
