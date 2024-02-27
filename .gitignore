@@ -107,7 +107,7 @@ i_deps
 ### Custom ###
 build/
 .vscode/
-
+.cache/
 
 ### CMake Patch ###
 # External projects
