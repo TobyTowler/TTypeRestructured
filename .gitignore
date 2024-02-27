@@ -101,7 +101,13 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
-_deps
+i_deps
+
+
+### Custom ###
+build/
+.vscode/
+
 
 ### CMake Patch ###
 # External projects

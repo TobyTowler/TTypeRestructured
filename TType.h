@@ -5,11 +5,13 @@
 
 using namespace std;
 
-class TType {
+class TType
+{
 private:
     string words;
     vector<int> input;
     int ch;
+
 public:
     int getCh() const;
 
@@ -17,9 +19,9 @@ public:
 
     TType();
 
-    void setWords(string fileName);   //Custom text
+    void setWords(string fileName); // Custom text
 
-    string getWords();                //get string words
+    string getWords(); // get string words
 
     void clearWords();
 
@@ -27,7 +29,7 @@ public:
 
     void checkChar();
 
-    [[nodiscard]] const vector<int> &getInput() const;
+    vector<int> getInput();
 
     void setInput(const vector<int> &input);
 
@@ -36,6 +38,4 @@ public:
     void run();
 };
 
-
-
-#endif //TTYPE_H
+#endif // TTYPE_H

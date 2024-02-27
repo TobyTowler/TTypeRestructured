@@ -8,44 +8,67 @@ using namespace std;
 /*************************************
  * title bar
  *************************************/
-void printTitle(){
-    //taken from https://www.asciiart.eu/text-to-ascii-art
-    printw("   /=========================================================================================\\\n"
-           "   ||  __        __   _                            _____       _____ _____                   ||\n"
-           "   ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   _|_   _|   _ _ __   ___   ||\n"
-           "   ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\    | |   | || | | | '_ \\ / _ \\  ||\n"
-           "   ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   | || |_| | |_) |  __/  ||\n"
-           "   ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    |_|   |_| \\__, | .__/ \\___|  ||\n"
-           "   ||                                                                     |___/|_|           ||\n"
-           "   \\=========================================================================================//\n");
+void printTitle()
+{
+    // taken from https://www.asciiart.eu/text-to-ascii-art
+    // short COLOR = 255;
+    // init_pair(255, 226, COLOR_BLACK);
+    // attron(COLOR_PAIR(255));
+    printw(" /=========================================================================================\\\n"
+           " ||  __        __   _                            _____       _____ _____                   ||\n"
+           " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   _|_   _|   _ _ __   ___   ||\n"
+           " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\    | |   | || | | | '_ \\ / _ \\  ||\n"
+           " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   | || |_| | |_) |  __/  ||\n"
+           " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    |_|   |_| \\__, | .__/ \\___|  ||\n"
+           " ||                                                                     |___/|_|           ||\n"
+           " \\=========================================================================================//\n\n");
 
+    // attroff(COLOR_PAIR(255));
     refresh();
 }
-
 
 /*************************************
  * Method for setting/resetting game parameters
  * prints menu options
  *************************************/
-void printSettings(TType &obj){
+void printSettings(TType &obj)
+{
 
-    printw("1. press 'Any key' to run test \n");
-    printw("2. press 'C' to change test text \n");
-    printw("3. press 'CTRL + C' to quit \n");
-    printw("4. press 'T' to go to title screen\n");
+    // short ONE = 254, TWO = 253, THREE = 252, FOUR = 251;
+    // init_pair(254, 226, COLOR_BLACK);
+    // init_pair(253, 227, COLOR_BLACK);
+    // init_pair(252, 228, COLOR_BLACK);
+    // init_pair(251, 254, COLOR_BLACK);
+
+    // attron(COLOR_PAIR(251));
+    printw(" 1. press 'Any key' to run test \n");
+    // attroff(COLOR_PAIR(254));
+    // attron(COLOR_PAIR(253));
+    printw(" 2. press 'C' to change test text \n");
+    // attroff(COLOR_PAIR(253));
+    // attron(COLOR_PAIR(252));
+    printw(" 3. press 'CTRL + C' to quit \n");
+    // attroff(COLOR_PAIR(252));
+    // attron(COLOR_PAIR(251));
+    printw(" 4. press 'T' to go to title screen\n");
+    // attroff(COLOR_PAIR(251));
     refresh();
 
     int cha = getch();
 
-    //Changing file
-    if(toupper(cha) == 'C'){
+    // Changing file
+    if (toupper(cha) == 'C')
+    {
         printw("Enter file name: ");
         echo();
         string str;
-        while (true){
+        while (true)
+        {
             cha = getch();
-            if(cha == 10) break; //10 = enter key
-            else {
+            if (cha == 10)
+                break; // 10 = enter key
+            else
+            {
                 str += cha;
                 refresh();
             }
@@ -54,8 +77,9 @@ void printSettings(TType &obj){
         obj.setWords(str);
     }
 
-    //Title screen
-    else if(toupper(cha) == 'T'){
+    // Title screen
+    else if (toupper(cha) == 'T')
+    {
         clear();
         printTitle();
         printSettings(obj);
