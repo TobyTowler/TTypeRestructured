@@ -4,19 +4,19 @@
 #include "nCursesConfig.h"
 
 int main() {
-  nCursesCFG();
+    nCursesCFG();
 
-  printTitle();
+    printTitle();
 
-  TType game;
+    TType game;
 
-  while (true) {
-    game.clearInput(); // reset input for each game
+    while (true) {
+        game.clearInput(); // reset input for each game
 
-    printSettings(game);
+        printSettings(game);
 
-    game.run();
+        game.run();
 
-    calculateScore(game);
-  }
+        calculateScore(game);
+    }
 }
