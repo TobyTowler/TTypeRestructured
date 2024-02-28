@@ -12,9 +12,13 @@ void calculateScore(TType obj){
     printw("\n\n--GAME OVER-- \nYou scored;\n");
     printw("  Accuracy: %0.f%%        ", double(right)/double(obj.getWords().size())*100);
 
-    //Calculate WPM
-    int WPM;
-    printw("WPM: %d\n\n", WPM);
+    //calculate WPM
+
+
+    //Calculate raw WPM
+    int rawWordsPerMinute;
+    rawWordsPerMinute = obj.getNumberOfSpaces()*60/obj.getRunTime();
+    printw("Raw WPM: %d\n\n", rawWordsPerMinute);
 
     refresh();
 }

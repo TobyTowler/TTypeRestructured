@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class TType
-{
+class TType {
 private:
     string words;
     vector<int> input;
     int ch;
+    double runTime;
 
 public:
     int getCh() const;
@@ -36,6 +36,10 @@ public:
     void addToInput(char c);
 
     void run();
+
+    double getRunTime();
+
+    int getNumberOfSpaces();
 };
 
 #endif // TTYPE_H
