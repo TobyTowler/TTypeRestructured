@@ -1,8 +1,0 @@
-#ifndef TTYPERESTRUCTURED_CALCULATE_H
-#define TTYPERESTRUCTURED_CALCULATE_H
-
-#include "TType.h"
-
-void calculateScore(TType obj);
-
-#endif //TTYPERESTRUCTURED_CALCULATE_H

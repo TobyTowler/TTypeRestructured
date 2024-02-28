@@ -1,4 +1,3 @@
-#include "Calculate.h"
 #include "Printer.h"
 #include "TType.h"
 #include "nCursesConfig.h"
@@ -11,12 +10,11 @@ int main() {
     TType game;
 
     while (true) {
-        game.clearInput(); // reset input for each game
+        game.resetGame();
 
         printSettings(game);
 
         game.run();
 
-        calculateScore(game);
     }
 }

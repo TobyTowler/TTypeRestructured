@@ -11,6 +11,7 @@ private:
     vector<int> input;
     int ch;
     double runTime;
+    int numberOfCorrectWords;
 
 public:
     int getCh() const;
@@ -40,6 +41,22 @@ public:
     double getRunTime();
 
     int getNumberOfSpaces();
+
+    int getNumberOfWords();
+
+    void setNumberOfCorrectWords(int num);
+    
+    int getNumberOfCorrectWords();
+
+    int getRawWPM();
+
+    void checkCharAndRealWPM();
+
+    int getAccuracy();
+
+   void printScore(); 
+
+    void resetGame();
 };
 
 #endif // TTYPE_H

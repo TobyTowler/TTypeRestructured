@@ -102,12 +102,14 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 i_deps
+.cmake*
 
 
 ### Custom ###
 build/
 .vscode/
 .cache/
+TTypeRestructured
 
 ### CMake Patch ###
 # External projects

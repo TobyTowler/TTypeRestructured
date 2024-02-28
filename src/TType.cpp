@@ -91,6 +91,7 @@ TType::TType() {
     this->input = {};
     this->ch = '\0';
     this->runTime = 0;
+    this->numberOfCorrectWords = 0;
 }
 
 int TType::getCh() const { return ch; }
@@ -107,7 +108,8 @@ void TType::run() {
 
         checkChar();
         ch = getch();
-        addToInput(ch);
+        input.push_back(ch);
+        //addToInput(ch);
 
         if (ch == KEY_BACKSPACE) {
             if (i > 0)
@@ -123,7 +125,8 @@ void TType::run() {
     std::chrono::duration<double> time = (end - start);
     runTime = time.count();
 
-    checkChar();
+    checkCharAndRealWPM();
+    printScore();
 }
 
 double TType::getRunTime(){
@@ -137,7 +140,104 @@ int TType::getNumberOfSpaces(){
             num++;
         }
     }
-    return num+1;
+    return num;
 }
+
+void TType::setNumberOfCorrectWords(int num){
+    numberOfCorrectWords = num;
+}
+
+int TType::getNumberOfCorrectWords(){
+    return numberOfCorrectWords;
+}
+
+int TType::getRawWPM(){
+     return int((getNumberOfSpaces()+1)*60/runTime);
+}
+
+int TType::getAccuracy(){
+        int right = 0;
+
+    for(int i = 0; i<input.size(); i++){
+        if(words.at(i) == input.at(i)) {right++;}
+    }
+
+        return (double(right)/double(words.size())*100);
+}
+
+void TType::checkCharAndRealWPM(){
+
+    int length = 0, height, width;
+
+    getmaxyx(stdscr, height, width);
+
+    clear();
+
+    // Colour pairs definition
+    short GREEN = 11, RED = 10;
+    init_pair(11, COLOR_GREEN, COLOR_BLACK);
+    init_pair(10, COLOR_RED, COLOR_BLACK);
+
+    // Chars user has written - RED-GREEN/BLACK
+    for (int i = 0; i < input.size(); i++) {
+        length++;
+        // width-10 is a rough value thast seems to look decent since most words
+        // arent over 10 characters long could make it dynamic based on distance to
+        // next space in words
+        if (length > width - 10 && words.at(i-1) == ' ') {
+            printw("\n");
+            length = 0;
+        }
+
+        if (words.at(i) == input.at(i)) {
+            attron(COLOR_PAIR(GREEN));
+            printw("%c", words.at(i));
+            attroff(COLOR_PAIR(GREEN));
+        } else {
+            attron(COLOR_PAIR(RED));
+            printw("%c", words.at(i));
+            attroff(COLOR_PAIR(RED));
+        }
+    }
+    
+    bool CORRECT = true;
+    for(int i =0 ; i<input.size(); i++){
+        if (words.at(i) != input.at(i)){
+        CORRECT = false;
+        }
+        if(words.at(i) == ' ' || i==words.length()-1){
+            if(CORRECT) {
+                numberOfCorrectWords++;
+            }
+            CORRECT = true;
+        }
+    }
+    refresh();
+}
+
+void TType::resetGame(){
+    input.clear();
+    numberOfCorrectWords = 0;
+}
+
+void TType::printScore(){
+    printw("\n\n");
+    printw("--GAME OVER--\nYou Scored:\n\n");
+    printw("  Accuracy: %d%%", getAccuracy());
+    printw("        WPM: %d", int((numberOfCorrectWords*60)/runTime));
+    printw("        Raw WPM: %d", int((getNumberOfSpaces()+1)*60/runTime));
+    printw("\n\n\n\n");
+
+    refresh();
+}
+
+
+
+
+
+
+
+
+
 
 
