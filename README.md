@@ -2,7 +2,7 @@
 # About 
 - my first large unguided project (technicall TType was but this is a contiuation)
 - very open to any advice
-- can use any .txt file as long its in the working directory
+- can use any .txt file as long its text directory or path is specified on input
 
 # Releases
 ## v1.2
