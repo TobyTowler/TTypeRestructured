@@ -5,6 +5,11 @@
 - can use any .txt file as long its in the working directory
 
 # Releases
+## v1.2
+- Score now shows raw WPN and accurate WPM
+- Text files are now stored in "text" directory
+- Added start button to title screen
+
 ## V1.1
 - Added raw words per minute score
   - (total words/time)
@@ -22,10 +27,12 @@
 
 # Screenshots
 ### Title screen
-![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/f55ac35d-b4fe-455e-a5c1-6ba6ec0b138b)
+![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/9f0d6586-4fb2-4342-8f9e-32490daa8cfb)
+
+
 
 ### Playing
 ![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/d49bc16b-0cab-439b-aba9-2ccd7c9c35ca)
 
 ### End Screen
-![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/a4d4ae56-9c4b-4c89-8e0f-f54bec2d39fa)
+![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/22c96933-7210-4305-8b73-f017a5e6facb)
