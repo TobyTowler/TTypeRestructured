@@ -1,10 +1,21 @@
 # TType - Rebuilt to be object-oriented
+
+![TTtypeGif](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/3befa8e7-dcf9-4130-9cb3-86f86f333907)
+
+lowest quality gif of all time idk why
+
+
 # About 
 - my first large unguided project (technically TType was but this is a continuation)
 - very open to any advice
 - can use any .txt file where:
     - file is in text directory
     - all text is on the first line of the file
+      
+## Requirements
+- nCurses library
+- C++ compiler
+
 
 # Releases
 ## v1.2
@@ -24,15 +35,3 @@
 - first release
 - rebuilt to be object/class based and have better modularity
 
-# Requirements
-- nCurses library
-
-# Screenshots
-### Title screen
-![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/9f0d6586-4fb2-4342-8f9e-32490daa8cfb)
-
-### Playing
-![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/d49bc16b-0cab-439b-aba9-2ccd7c9c35ca)
-
-### End Screen
-![image](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/22c96933-7210-4305-8b73-f017a5e6facb)
