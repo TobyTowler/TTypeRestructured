@@ -2,18 +2,16 @@
 #include "chrono"
 #include "ncurses.h"
 #include <chrono>
-#include <cstring>
 #include <fstream>
-#include <iostream>
-#include <sstream>
+#include <string>
 
 // Custom text
 void TType::setWords(string fileName) {
-    stringstream str;
-    std::ifstream inputFile("text/" + fileName);
-    str << inputFile.rdbuf();
-    inputFile.close();
-    words = str.str();
+    string str;
+    ifstream f;
+    f.open("text/" + fileName);
+    getline(f, str);
+    words = str;
 }
 
 string TType::getWords() { return words; }
@@ -108,9 +106,9 @@ void TType::run() {
     chrono::steady_clock::time_point start;
 
     for (int i = 0; i < size(words); i++) {
-        if (words[i] == '\n') {
-            break;
-        }
+        /* if (words[i] == '\n') { */
+        /*     break; */
+        /* } */
         checkChar();
         ch = getch();
 

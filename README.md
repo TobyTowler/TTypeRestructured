@@ -4,7 +4,7 @@
 - very open to any advice
 - can use any .txt file where:
     - file is in text directory
-    - all text is on 1 line, new line characters will cause the program to stop even if more text is displayed
+    - all text is on the first line of the file
 
 # Releases
 ## v1.2
