@@ -1,4 +1,5 @@
 #include "Printer.h"
+#include "Colours.h"
 #include "TType.h"
 #include <ncurses.h>
 
@@ -9,19 +10,26 @@ using namespace std;
  *************************************/
 void printTitle() {
     // taken from https://www.asciiart.eu/text-to-ascii-art
-    // short COLOR = 255;
-    // init_pair(255, 226, COLOR_BLACK);
-    // attron(COLOR_PAIR(255));
+
+    attron(COLOR_PAIR(NcursesColors::TITLEPAIR));
 
     printw(" /"
-           "=========================================================================================\\\n"
-           " ||  __        __   _                            _____       ___________                   ||\n"
-           " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   _|_   _|   _ _ __   ___   ||\n"
-           " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\    | |   | || | | | '_ \\ / _ \\  ||\n"
-           " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   | || |_| | |_) |  __/  ||\n"
-           " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    |_|   |_| \\__, | .__/ \\___|  ||\n"
-           " ||                                                                     |___/|_|           ||\n"
-           " \\=========================================================================================//\n\n"
+           "====================================================================="
+           "====================\\\n"
+           " ||  __        __   _                            _____       "
+           "___________                   ||\n"
+           " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   "
+           "_|_   _|   _ _ __   ___   ||\n"
+           " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\   "
+           " | |   | || | | | '_ \\ / _ \\  ||\n"
+           " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   "
+           "| || |_| | |_) |  __/  ||\n"
+           " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    "
+           "|_|   |_| \\__, | .__/ \\___|  ||\n"
+           " ||                                                                  "
+           "   |___/|_|           ||\n"
+           " \\=================================================================="
+           "=======================//\n\n"
            "                                      Press To Start\n");
 
     refresh();
@@ -30,16 +38,26 @@ void printTitle() {
 
     clear();
     printw(" /"
-           "=========================================================================================\\\n"
-           " ||  __        __   _                            _____       ___________                   ||\n"
-           " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   _|_   _|   _ _ __   ___   ||\n"
-           " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\    | |   | || | | | '_ \\ / _ \\  ||\n"
-           " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   | || |_| | |_) |  __/  ||\n"
-           " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    |_|   |_| \\__, | .__/ \\___|  ||\n"
-           " ||                                                                     |___/|_|           ||\n"
-           " \\=========================================================================================//\n\n");
+           "====================================================================="
+           "====================\\\n"
+           " ||  __        __   _                            _____       "
+           "___________                   ||\n"
+           " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_                      "
+           "_|_   _|   _ _ __   ___   ||\n"
+           " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\   "
+           " | |   | || | | | '_ \\ / _ \\  ||\n"
+           " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   "
+           "| || |_| | |_) |  __/  ||\n"
+           " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    "
+           "|_|   |_| \\__, | .__/ \\___|  ||\n"
+           " ||                                                                   "
+           "    "
+           "   |___/|_|           ||\n"
+           " \\=================================================================="
+           "=======================//\n\n");
 
     refresh();
+    attroff(COLOR_PAIR(NcursesColors::TITLEPAIR));
 }
 
 /*************************************
@@ -48,25 +66,13 @@ void printTitle() {
  *************************************/
 void printSettings(TType &obj) {
 
-    // short ONE = 254, TWO = 253, THREE = 252, FOUR = 251;
-    // init_pair(254, 226, COLOR_BLACK);
-    // init_pair(253, 227, COLOR_BLACK);
-    // init_pair(252, 228, COLOR_BLACK);
-    // init_pair(251, 254, COLOR_BLACK);
-
-    // attron(COLOR_PAIR(251));
+    attron(COLOR_PAIR(NcursesColors::SUBPAIR));
     printw(" 1. press 'R' to run test \n");
-    // attroff(COLOR_PAIR(254));
-    // attron(COLOR_PAIR(253));
     printw(" 2. press 'C' to change test text \n");
-    // attroff(COLOR_PAIR(253));
-    // attron(COLOR_PAIR(252));
     printw(" 3. press 'CTRL + C' to quit \n");
-    // attroff(COLOR_PAIR(252));
-    // attron(COLOR_PAIR(251));
     printw(" 4. press 'T' to go to title screen\n");
-    // attroff(COLOR_PAIR(251));
     refresh();
+    attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
 
     int cha;
     bool play = false;
@@ -82,20 +88,32 @@ void printSettings(TType &obj) {
         // Changing file
         if (toupper(cha) == 'C') {
             play = true;
-            printw("Enter file name: ");
-            echo(); // to see what user is typing turned off again further down
             string str;
-            while (true) {
+            bool search = false;
+            while (!search) {
+                clear();
+                printw("Enter file name: ");
+                printw("%s", str.c_str());
+                /* printw("\n\n", str); */
+                refresh();
                 cha = getch();
-                if (cha == 10)
-                    break; // 10 = enter key
-                else {
+                switch (cha) {
+                case 10: // enter
+                    search = true;
+                    break;
+                case KEY_BACKSPACE: // backspace
+                    if (str.length() > 0)
+                        /* str = str.substr(0, str.length() - 1); */
+                        str.pop_back();
+                    else
+                        str = "";
+                    break;
+                default:
                     str += cha;
-                    refresh();
+                    break;
                 }
             }
 
-            noecho();
             obj.setWords(str);
         }
 

@@ -6,14 +6,14 @@
 using namespace std;
 
 class TType {
-private:
+  private:
     string words;
     vector<int> input;
     int ch;
     double runTime;
     int numberOfCorrectWords;
 
-public:
+  public:
     int getCh() const;
 
     void setCh(int ch);
@@ -45,7 +45,7 @@ public:
     int getNumberOfWords();
 
     void setNumberOfCorrectWords(int num);
-    
+
     int getNumberOfCorrectWords();
 
     int getRawWPM();
@@ -54,7 +54,7 @@ public:
 
     int getAccuracy();
 
-   void printScore(); 
+    void printScore();
 
     void resetGame();
 };
