@@ -1,4 +1,5 @@
 #include "TType.h"
+#include "Colours.h"
 #include "chrono"
 #include "ncurses.h"
 #include <chrono>
@@ -32,13 +33,6 @@ void TType::checkChar() {
 
     clear();
 
-    // Colour pairs definition
-    short GREEN = 1, RED = 2, WHITE = 3, MAGENTA = 4;
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    init_pair(2, COLOR_RED, COLOR_BLACK);
-    init_pair(3, COLOR_WHITE, COLOR_BLACK);
-    init_pair(4, COLOR_WHITE, COLOR_MAGENTA);
-
     // Chars user has written - RED-GREEN/BLACK
     for (int i = 0; i < input.size(); i++) {
         length++;
@@ -51,20 +45,20 @@ void TType::checkChar() {
         }
 
         if (words.at(i) == input.at(i)) {
-            attron(COLOR_PAIR(GREEN));
+            attron(COLOR_PAIR(NcursesColors::GREEN_TEXTPAIR));
             printw("%c", words.at(i));
-            attroff(COLOR_PAIR(GREEN));
+            attroff(COLOR_PAIR(NcursesColors::GREEN_TEXTPAIR));
         } else {
-            attron(COLOR_PAIR(RED));
+            attron(COLOR_PAIR(NcursesColors::RED_TEXTPAIR));
             printw("%c", words.at(i));
-            attroff(COLOR_PAIR(RED));
+            attroff(COLOR_PAIR(NcursesColors::RED_TEXTPAIR));
         }
     }
 
     // Current char - WHITE/MAGENTA
-    attron(COLOR_PAIR(MAGENTA));
+    attron(COLOR_PAIR(NcursesColors::BACKGROUND_CURSORPAIR));
     printw("%c", words[input.size()]);
-    attroff(COLOR_PAIR(MAGENTA));
+    attroff(COLOR_PAIR(NcursesColors::BACKGROUND_CURSORPAIR));
 
     // Chars not yet reached - WHITE/BLACK
     for (int o = input.size() + 1; o < words.length(); o++) {
@@ -74,9 +68,9 @@ void TType::checkChar() {
             length = 0;
         }
 
-        attron(COLOR_PAIR(WHITE));
+        attron(COLOR_PAIR(NcursesColors::TEXTPAIR));
         printw("%c", words[o]);
-        attroff(COLOR_PAIR(WHITE));
+        attroff(COLOR_PAIR(NcursesColors::TEXTPAIR));
     }
 
     refresh();
@@ -176,11 +170,6 @@ void TType::checkCharAndRealWPM() {
 
     clear();
 
-    // Colour pairs definition
-    short GREEN = 11, RED = 10;
-    init_pair(11, COLOR_GREEN, COLOR_BLACK);
-    init_pair(10, COLOR_RED, COLOR_BLACK);
-
     // Chars user has written - RED-GREEN/BLACK
     for (int i = 0; i < input.size(); i++) {
         length++;
@@ -193,13 +182,13 @@ void TType::checkCharAndRealWPM() {
         }
 
         if (words.at(i) == input.at(i)) {
-            attron(COLOR_PAIR(GREEN));
+            attron(COLOR_PAIR(NcursesColors::GREEN_TEXTPAIR));
             printw("%c", words.at(i));
-            attroff(COLOR_PAIR(GREEN));
+            attroff(COLOR_PAIR(NcursesColors::GREEN_TEXTPAIR));
         } else {
-            attron(COLOR_PAIR(RED));
+            attron(COLOR_PAIR(NcursesColors::RED_TEXTPAIR));
             printw("%c", words.at(i));
-            attroff(COLOR_PAIR(RED));
+            attroff(COLOR_PAIR(NcursesColors::RED_TEXTPAIR));
         }
     }
 
@@ -225,10 +214,12 @@ void TType::resetGame() {
 
 void TType::printScore() {
     printw("\n\n");
+    attron(COLOR_PAIR(NcursesColors::SCORE_PAIR));
     printw("--GAME OVER--\nYou Scored:\n\n");
     printw("  Accuracy: %d%%", getAccuracy());
     printw("        WPM: %d", int((numberOfCorrectWords * 60) / runTime));
     printw("        Raw WPM: %d", int((getNumberOfSpaces() + 1) * 60 / runTime));
+    attroff(COLOR_PAIR(NcursesColors::SCORE_PAIR));
     printw("\n\n\n\n");
 
     refresh();
