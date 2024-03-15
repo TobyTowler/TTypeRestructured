@@ -1,8 +1,8 @@
 # TType - Rebuilt to be object-oriented
 
-![TTtypeGif](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/3befa8e7-dcf9-4130-9cb3-86f86f333907)
+![TTypeGif2](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/00319ed3-0855-4966-acc7-ea353fb5d16a)
 
-lowest quality gif of all time idk why
+
 
 
 # About 
@@ -18,7 +18,14 @@ lowest quality gif of all time idk why
 
 
 # Releases
-## v1.2
+## V1.3
+- Added colourscheme
+    - Gruvbox
+        - i dont really like it but its better than nothing
+        - will change it/add more options
+- Fixed WPM counter to start after first key press
+
+## V1.2
 - Score now shows raw WPM and accurate WPM
 - Text files are now stored in "text" directory
 - Added start button to title screen
