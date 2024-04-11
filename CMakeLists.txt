@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.27)
+project(TTypeRestructured)
+
+set(CMAKE_CXX_STANDARD 17)
+
+find_package(Curses REQUIRED)
+
+add_executable(TTypeRestructured src/main.cpp
+        src/TType.cpp
+        src/TType.h
+        src/nCursesConfig.cpp
+        src/nCursesConfig.h
+        src/Printer.cpp
+        src/Printer.h
+        src/Colours.h
+        )
+
+# Link against the ncurses library
+target_link_libraries(TTypeRestructured PRIVATE ${CURSES_LIBRARIES})
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
