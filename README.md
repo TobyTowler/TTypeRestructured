@@ -6,7 +6,7 @@
 
 
 # About 
-- my first large unguided project (technically TType was but this is a continuation)
+- my first large unguided project 
 - very open to any advice
 - can use any .txt file where:
     - file is in text directory
@@ -18,6 +18,11 @@
 
 
 # Releases
+## V1.4
+- Multithreaded the title page
+    - flashing start button
+        - slight delay at times due to the nature of the printing function
+
 ## V1.3
 - Added colourscheme
     - Gruvbox
