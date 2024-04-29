@@ -4,6 +4,8 @@
 #include "TType.h"
 
 void printTitle();
+void waitForKeyPress();
+void callTitle();
 void printSettings(TType &obj);
 
-#endif //PRINTER_H
+#endif // PRINTER_H

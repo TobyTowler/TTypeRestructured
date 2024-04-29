@@ -4,6 +4,7 @@ project(TTypeRestructured)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(Curses REQUIRED)
+find_package(Threads)
 
 add_executable(TTypeRestructured src/main.cpp
         src/TType.cpp
@@ -16,7 +17,8 @@ add_executable(TTypeRestructured src/main.cpp
         )
 
 # Link against the ncurses library
-target_link_libraries(TTypeRestructured PRIVATE ${CURSES_LIBRARIES})
+target_link_libraries(TTypeRestructured PRIVATE ${CURSES_LIBRARIES} Threads::Threads)
+
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

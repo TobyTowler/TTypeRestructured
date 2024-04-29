@@ -5,7 +5,7 @@
 int main() {
     nCursesCFG();
 
-    printTitle();
+    callTitle();
 
     TType game;
 
@@ -15,6 +15,5 @@ int main() {
         printSettings(game);
 
         game.run();
-
     }
 }
