@@ -18,6 +18,11 @@
 
 
 # Releases
+## V1.5
+- select words in random order
+    - same selection process as in order text
+    - set to default mode
+
 ## V1.4
 - Multithreaded the title page
     - flashing start button
