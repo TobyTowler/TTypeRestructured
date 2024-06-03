@@ -14,15 +14,9 @@ class TType {
     int numberOfCorrectWords;
 
   public:
-    int getCh() const;
-
-    void setCh(int ch);
-
     TType();
 
     void setWords(string fileName); // Custom text
-
-    string getWords(); // get string words
 
     void clearWords();
 
@@ -30,23 +24,9 @@ class TType {
 
     void checkChar();
 
-    vector<int> getInput();
-
-    void setInput(const vector<int> &input);
-
-    void addToInput(char c);
-
     void run();
 
-    double getRunTime();
-
     int getNumberOfSpaces();
-
-    int getNumberOfWords();
-
-    void setNumberOfCorrectWords(int num);
-
-    int getNumberOfCorrectWords();
 
     int getRawWPM();
 
@@ -57,6 +37,10 @@ class TType {
     void printScore();
 
     void resetGame();
+
+    void setLines();
+
+    void setRandomWords(string fileName);
 };
 
 #endif // TTYPE_H

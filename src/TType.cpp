@@ -1,21 +1,24 @@
-#include "TType.h"
-#include "Colours.h"
+#include "include/TType.h"
 #include "chrono"
+#include "include/Colours.h"
 #include "ncurses.h"
 #include <chrono>
+#include <cstdlib>
 #include <fstream>
+#include <map>
+#include <sstream>
 #include <string>
+#include <vector>
 
 // Custom text
 void TType::setWords(string fileName) {
+    words.clear();
     string str;
     ifstream f;
     f.open("text/" + fileName);
     getline(f, str);
     words = str;
 }
-
-string TType::getWords() { return words; }
 
 void TType::clearWords() { setWords("default.txt"); }
 
@@ -33,14 +36,17 @@ void TType::checkChar() {
 
     clear();
 
+    // blank space
+    printw("\n\n     ");
+
     // Chars user has written - RED-GREEN/BLACK
     for (int i = 0; i < input.size(); i++) {
-        length++;
-        // width-10 is a rough value thast seems to look decent since most words
-        // arent over 10 characters long could make it dynamic based on distance
+        length++; // width-10 is a rough value thast seems to look decent since most words arent
+                  // over 10 characters long could make it dynamic based on distance
         // to next space in words
-        if (length > width - 10 && words.at(i - 1) == ' ') {
-            printw("\n");
+        if (length > width - 15 && words.at(i - 1) == ' ') {
+
+            printw("          ");
             length = 0;
         }
 
@@ -63,11 +69,10 @@ void TType::checkChar() {
     // Chars not yet reached - WHITE/BLACK
     for (int o = input.size() + 1; o < words.length(); o++) {
         length++;
-        if (length > width - 10 && words.at(o - 1) == ' ') {
-            printw("\n");
+        if (length > width - 15 && words.at(o - 1) == ' ') {
+            printw("          ");
             length = 0;
         }
-
         attron(COLOR_PAIR(NcursesColors::TEXTPAIR));
         printw("%c", words[o]);
         attroff(COLOR_PAIR(NcursesColors::TEXTPAIR));
@@ -76,21 +81,22 @@ void TType::checkChar() {
     refresh();
 }
 
-vector<int> TType::getInput() { return input; }
-
-void TType::addToInput(char c) { input.push_back(c); }
+void TType::setLines() {
+    map<int, string> lines;
+    int lineSize = 50, counter = 0;
+    for (int i = 0; i < words.length(); i++) {
+        counter++;
+    }
+}
 
 TType::TType() {
-    this->setWords("default.txt");
+    // this->setWords("longtext.txt");
+    this->setRandomWords("1000words.txt");
     this->input = {};
     this->ch = '\0';
     this->runTime = 0;
     this->numberOfCorrectWords = 0;
 }
-
-int TType::getCh() const { return ch; }
-
-void TType::setCh(int ch) { this->ch = ch; }
 
 void TType::run() {
 
@@ -101,8 +107,7 @@ void TType::run() {
 
     for (int i = 0; i < size(words); i++) {
         /* if (words[i] == '\n') { */
-        /*     break; */
-        /* } */
+        /*     break; */ /* } */
         checkChar();
         ch = getch();
 
@@ -132,8 +137,6 @@ void TType::run() {
     printScore();
 }
 
-double TType::getRunTime() { return runTime; }
-
 int TType::getNumberOfSpaces() {
     int num = 0;
     for (char c : words) {
@@ -143,10 +146,6 @@ int TType::getNumberOfSpaces() {
     }
     return num;
 }
-
-void TType::setNumberOfCorrectWords(int num) { numberOfCorrectWords = num; }
-
-int TType::getNumberOfCorrectWords() { return numberOfCorrectWords; }
 
 int TType::getRawWPM() { return int((getNumberOfSpaces() + 1) * 60 / runTime); }
 
@@ -223,4 +222,32 @@ void TType::printScore() {
     printw("\n\n\n\n");
 
     refresh();
+}
+
+void TType::setRandomWords(string fileName) {
+    words.clear();
+    // open files
+    string str;
+    ifstream f;
+    f.open("text/" + fileName);
+    getline(f, str);
+
+    // convert string to array
+    vector<string> wordsArray;
+    stringstream ss(str);
+    string tmp;
+    while (std::getline(ss, tmp, ' ')) {
+        wordsArray.push_back(tmp);
+    }
+    // printw("%zu", wordsArray.size());
+    // getch();
+
+    // select words
+    srand(time(NULL));
+    for (int i = 0; i < 5; i++) {
+        int num = rand() % wordsArray.size();
+        words.append(wordsArray[num] + " ");
+        wordsArray.erase(wordsArray.begin() + num);
+    }
+    words.erase(words.begin() + words.length() - 1);
 }

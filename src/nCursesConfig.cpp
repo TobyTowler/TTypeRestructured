@@ -1,5 +1,5 @@
-#include "nCursesConfig.h"
-#include "Colours.h"
+#include "include/nCursesConfig.h"
+#include "include/Colours.h"
 #include <ncurses.h>
 
 /*************************************

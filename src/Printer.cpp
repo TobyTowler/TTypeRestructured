@@ -1,6 +1,6 @@
-#include "Printer.h"
-#include "Colours.h"
-#include "TType.h"
+#include "include/Printer.h"
+#include "include/Colours.h"
+#include "include/TType.h"
 #include <chrono>
 #include <ncurses.h>
 #include <thread>
@@ -20,47 +20,34 @@ void printTitle() {
         attron(COLOR_PAIR(NcursesColors::TITLEPAIR));
 
         clear();
-        printw(" /"
-               "====================================================================="
-               "====================\\\n"
-               " ||  __        __   _                            _____       "
-               "___________                   ||\n"
-               " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   "
-               "_|_   _|   _ _ __   ___   ||\n"
-               " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\   "
-               " | |   | || | | | '_ \\ / _ \\  ||\n"
-               " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   "
-               "| || |_| | |_) |  __/  ||\n"
-               " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    "
-               "|_|   |_| \\__, | .__/ \\___|  ||\n"
-               " ||                                                                  "
-               "   |___/|_|           ||\n"
-               " \\=================================================================="
-               "=======================//\n\n"
-               "                                      Press To Start\n");
+        printw(""
+               "  ______  ______                            \n"
+               " /\\__  _\\/\\__  _\\                          \n"
+               " \\/_/\\ \\/\\/_/\\ \\/ __  __  _____      __    \n"
+               "    \\ \\ \\   \\ \\ \\/\\ \\/\\ \\/\\ '__`\\  /'__`\\  \n"
+               "     \\ \\ \\   \\ \\ \\ \\ \\_\\ \\ \\ \\L\\ \\/\\  __/  \n"
+               "      \\ \\_\\   \\ \\_\\/`____ \\ \\ ,__/\\ \\____\\ \n"
+               "       \\/_/    \\/_/`/___/> \\ \\ \\/  \\/____/ \n"
+               "                      /\\___/\\ \\_\\          \n"
+               "                      \\/__/  \\/_/          \n\n"
+               "              Press To Start\n\n");
 
         refresh();
 
         this_thread::sleep_for(std::chrono::milliseconds(600));
 
         clear();
-        printw(" /"
-               "====================================================================="
-               "====================\\\n"
-               " ||  __        __   _                            _____       "
-               "___________                   ||\n"
-               " ||  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   |_   "
-               "_|_   _|   _ _ __   ___   ||\n"
-               " ||   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\   "
-               " | |   | || | | | '_ \\ / _ \\  ||\n"
-               " ||    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) |   | |   "
-               "| || |_| | |_) |  __/  ||\n"
-               " ||     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/    "
-               "|_|   |_| \\__, | .__/ \\___|  ||\n"
-               " ||                                                                  "
-               "   |___/|_|           ||\n"
-               " \\=================================================================="
-               "=======================//\n\n\n");
+
+        printw(""
+               "  ______  ______                            \n"
+               " /\\__  _\\/\\__  _\\                          \n"
+               " \\/_/\\ \\/\\/_/\\ \\/ __  __  _____      __    \n"
+               "    \\ \\ \\   \\ \\ \\/\\ \\/\\ \\/\\ '__`\\  /'__`\\  \n"
+               "     \\ \\ \\   \\ \\ \\ \\ \\_\\ \\ \\ \\L\\ \\/\\  __/  \n"
+               "      \\ \\_\\   \\ \\_\\/`____ \\ \\ ,__/\\ \\____\\ \n"
+               "       \\/_/    \\/_/`/___/> \\ \\ \\/  \\/____/ \n"
+               "                      /\\___/\\ \\_\\          \n"
+               "                      \\/__/  \\/_/          \n\n\n");
 
         refresh();
         this_thread::sleep_for(std::chrono::milliseconds(400));
@@ -95,9 +82,10 @@ void printSettings(TType &obj) {
 
     attron(COLOR_PAIR(NcursesColors::SUBPAIR));
     printw(" 1. press 'R' to run test \n");
-    printw(" 2. press 'C' to change test text \n");
-    printw(" 3. press 'CTRL + C' to quit \n");
-    printw(" 4. press 'T' to go to title screen\n");
+    printw(" 2. press 'C' to change test text to read from a file\n");
+    printw(" 3. press 'V' to change test text to random words from a file\n");
+    printw(" 4. press 'CTRL + C' to quit \n");
+    printw(" 5. press 'T' to go to title screen\n");
     refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
 
@@ -142,6 +130,38 @@ void printSettings(TType &obj) {
             }
 
             obj.setWords(str);
+        }
+
+        // Changing file random words
+        if (toupper(cha) == 'V') {
+            play = true;
+            string str;
+            bool search = false;
+            while (!search) {
+                clear();
+                printw("Enter file name: ");
+                printw("%s", str.c_str());
+                /* printw("\n\n", str); */
+                refresh();
+                cha = getch();
+                switch (cha) {
+                case 10: // enter
+                    search = true;
+                    break;
+                case KEY_BACKSPACE: // backspace
+                    if (str.length() > 0)
+                        /* str = str.substr(0, str.length() - 1); */
+                        str.pop_back();
+                    else
+                        str = "";
+                    break;
+                default:
+                    str += cha;
+                    break;
+                }
+            }
+
+            obj.setRandomWords(str);
         }
 
         // Title screen

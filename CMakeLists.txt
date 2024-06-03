@@ -8,12 +8,12 @@ find_package(Threads)
 
 add_executable(TTypeRestructured src/main.cpp
         src/TType.cpp
-        src/TType.h
+        src/include/TType.h
         src/nCursesConfig.cpp
-        src/nCursesConfig.h
+        src/include/nCursesConfig.h
         src/Printer.cpp
-        src/Printer.h
-        src/Colours.h
+        src/include/Printer.h
+        src/include/Colours.h
         )
 
 # Link against the ncurses library
