@@ -2,6 +2,7 @@
 #include "include/Colours.h"
 #include "include/TType.h"
 #include <chrono>
+#include <filesystem>
 #include <ncurses.h>
 #include <thread>
 
@@ -74,6 +75,19 @@ void callTitle() {
     }
 }
 
+void fileSelector(string path) {
+    vector<string> files;
+    for (const auto &entry : filesystem::directory_iterator(path)) {
+        files.push_back(entry.path().filename().string());
+    }
+
+    clear();
+    printw("Available Files: ");
+    for (int i = 0; i < files.size(); i++) {
+        printw("\n  %s", files[i].c_str());
+    }
+}
+
 /*************************************
  * Method for setting/resetting game parameters
  * prints menu options
@@ -103,33 +117,35 @@ void printSettings(TType &obj) {
         // Changing file
         if (toupper(cha) == 'C') {
             play = true;
-            string str;
-            bool search = false;
-            while (!search) {
-                clear();
-                printw("Enter file name: ");
-                printw("%s", str.c_str());
-                /* printw("\n\n", str); */
-                refresh();
-                cha = getch();
-                switch (cha) {
-                case 10: // enter
-                    search = true;
-                    break;
-                case KEY_BACKSPACE: // backspace
-                    if (str.length() > 0)
-                        /* str = str.substr(0, str.length() - 1); */
-                        str.pop_back();
-                    else
-                        str = "";
-                    break;
-                default:
-                    str += cha;
-                    break;
-                }
-            }
-
-            obj.setWords(str);
+            fileSelector("./../text/");
+            // string str;
+            // bool search = false;
+            // while (!search) {
+            //     clear();
+            //     printw("Enter file name: ");
+            //     printw("%s", str.c_str());
+            //     /* printw("\n\n", str); */
+            //     refresh();
+            //     cha = getch();
+            //     switch (cha) {
+            //     case 10: // enter
+            //         search = true;
+            //         break;
+            //     case KEY_BACKSPACE: // backspace
+            //         if (str.length() > 0)
+            //             /* str = str.substr(0, str.length() - 1); */
+            //             str.pop_back();
+            //         else
+            //             str = "";
+            //         break;
+            //     default:
+            //         str += cha;
+            //         break;
+            //     }
+            // }
+            //
+            // obj.setWords(str);
+            getch();
         }
 
         // Changing file random words
