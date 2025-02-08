@@ -6,16 +6,14 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(Curses REQUIRED)
 find_package(Threads)
 
-add_executable(TTypeRestructured src/main.cpp
-        src/TType.cpp
-        src/include/TType.h
-        src/nCursesConfig.cpp
-        src/include/nCursesConfig.h
-        src/Printer.cpp
-        src/include/Printer.h
-        src/include/Colours.h
-        )
+# Include directories (Make headers accessible)
+include_directories(${PROJECT_SOURCE_DIR}/src/include)
 
+# Collect all source files
+file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
+# Create the executable
+add_executable(TTypeRestructured ${SRC_FILES})
 # Link against the ncurses library
 target_link_libraries(TTypeRestructured PRIVATE ${CURSES_LIBRARIES} Threads::Threads)
 

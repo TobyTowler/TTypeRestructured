@@ -1,8 +1,8 @@
 #include "include/Printer.h"
 #include "include/Colours.h"
 #include "include/TType.h"
+#include "include/fileSelector.h"
 #include <chrono>
-#include <filesystem>
 #include <ncurses.h>
 #include <thread>
 
@@ -75,19 +75,6 @@ void callTitle() {
     }
 }
 
-void fileSelector(string path) {
-    vector<string> files;
-    for (const auto &entry : filesystem::directory_iterator(path)) {
-        files.push_back(entry.path().filename().string());
-    }
-
-    clear();
-    printw("Available Files: ");
-    for (int i = 0; i < files.size(); i++) {
-        printw("\n  %s", files[i].c_str());
-    }
-}
-
 /*************************************
  * Method for setting/resetting game parameters
  * prints menu options
@@ -117,7 +104,7 @@ void printSettings(TType &obj) {
         // Changing file
         if (toupper(cha) == 'C') {
             play = true;
-            fileSelector("./../text/");
+            obj.setWords(fileSelector("./../text/"));
             // string str;
             // bool search = false;
             // while (!search) {
@@ -145,7 +132,7 @@ void printSettings(TType &obj) {
             // }
             //
             // obj.setWords(str);
-            getch();
+            // getch();
         }
 
         // Changing file random words

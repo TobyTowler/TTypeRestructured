@@ -9,6 +9,7 @@ void nCursesCFG() {
     initscr();
     noecho();
     cbreak();
+    curs_set(0);
     keypad(stdscr, TRUE);
     start_color();
     NcursesColors::initCustomColor();
