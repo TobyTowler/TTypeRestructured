@@ -5,7 +5,8 @@
 int main() {
     nCursesCFG();
 
-    callTitle();
+    // callTitle();
+    printTitle();
 
     TType game;
 

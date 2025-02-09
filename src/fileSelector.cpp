@@ -12,6 +12,10 @@
  *
  */
 
+// vector<string> includingFind(vector<string> dir){
+//
+// }
+
 string fileSelector(string path) {
     vector<string> files;
     for (const auto &entry : filesystem::directory_iterator(path)) {
@@ -37,9 +41,15 @@ string fileSelector(string path) {
         switch (ch) {
         case 'j':
             selected++;
+            if (selected > files.size() - 1) {
+                selected = 0;
+            }
             break;
         case 'k':
             selected--;
+            if (selected < 0) {
+                selected = files.size() - 1;
+            }
             break;
         case 'q':
             return "";
@@ -48,11 +58,6 @@ string fileSelector(string path) {
             chosen = selected;
             play = false;
             break;
-        }
-        if (selected > files.size() - 1) {
-            selected = 0;
-        } else if (selected < 0) {
-            selected = files.size() - 1;
         }
     }
 

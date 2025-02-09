@@ -2,8 +2,11 @@
 
 ![TTypeGif2](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/00319ed3-0855-4966-acc7-ea353fb5d16a)
 
-
-
+> [!TODO]
+> Reset random words on retry
+> Remove press to start
+> Change menu inputs to numbers
+> 
 
 # About 
 - my first large unguided project 
