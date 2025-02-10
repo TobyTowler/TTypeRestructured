@@ -5,10 +5,10 @@
 ![Title](./media/Title.png "Title")
 
 ### Changing file
-![input editor](./media/Change File.png "File change")
+![input editor](./media/ChangeFile.png File change")
 
 ### Playing/Score
-![Score](./media/Score.pnge.png "Score")
+![Score](./media/Score.png "Score")
 
 > [!TODO]
 > Reset random words on retry
