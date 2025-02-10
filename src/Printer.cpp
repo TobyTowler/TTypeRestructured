@@ -85,7 +85,7 @@ void printSettings(TType &obj) {
     printw(" 1. Play game \n");
     printw(" 2. Change text file \n");
     printw(" 3. Change text to random words from a file\n");
-    printw(" 4. Title screen\n");
+    // printw(" 4. Title screen\n");
     printw(" Press 'CTRL + C' to quit \n");
     refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
@@ -140,12 +140,12 @@ void printSettings(TType &obj) {
         }
 
         // Title screen
-        else if (toupper(cha) == '4') {
-            clear();
-            callTitle();
-            printSettings(obj);
-            obj.clearInput();
-            obj.clearWords();
-        }
+        // else if (toupper(cha) == '4') {
+        //     clear();
+        //     callTitle();
+        //     printSettings(obj);
+        //     obj.clearInput();
+        //     obj.clearWords();
+        // }
     }
 }

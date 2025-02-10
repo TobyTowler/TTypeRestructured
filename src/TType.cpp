@@ -222,7 +222,7 @@ void TType::setRandomWords(string fileName) {
 
     // select words
     srand(time(NULL));
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
         int num = rand() % wordsArray.size();
         words.append(wordsArray[num] + " ");
         wordsArray.erase(wordsArray.begin() + num);

@@ -37,6 +37,12 @@ string fileSelector(string path) {
                 printw("\n  %s", files[i].c_str());
             }
         }
+
+        attron(COLOR_PAIR(NcursesColors::SUBPAIR));
+        printw("\n\n\n Binds: \n");
+        printw(" 'J': down  'K': up  'Enter': select");
+        attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
+
         int ch = getch();
         switch (ch) {
         case 'j':
@@ -50,9 +56,6 @@ string fileSelector(string path) {
             if (selected < 0) {
                 selected = files.size() - 1;
             }
-            break;
-        case 'q':
-            return "";
             break;
         case 10:
             chosen = selected;

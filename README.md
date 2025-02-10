@@ -1,6 +1,14 @@
 # TType - Rebuilt to be object-oriented
 
-![TTypeGif2](https://github.com/TobyTowler/TTypeRestructured/assets/135618916/00319ed3-0855-4966-acc7-ea353fb5d16a)
+## ScreenShots
+### Title
+![Title](./media/Title.png "Title")
+
+### Changing file
+![input editor](./media/Change File.png "File change")
+
+### Playing/Score
+![Score](./media/Score.pnge.png "Score")
 
 > [!TODO]
 > Reset random words on retry
@@ -21,6 +29,11 @@
 
 
 # Releases
+## V1.6
+- New file selector
+    * vim style keybinds
+    * contents of text directory shown in program
+
 ## V1.5
 - select words in random order
     - same selection process as in order text
