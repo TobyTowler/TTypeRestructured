@@ -5,7 +5,7 @@
 ![Title](./media/Title.png "Title")
 
 ### Changing file
-![input editor](./media/ChangeFile.png File change")
+![input editor](./media/ChangeFile.png "File change")
 
 ### Playing/Score
 ![Score](./media/Score.png "Score")
