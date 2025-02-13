@@ -12,13 +12,13 @@ class TType {
     int ch;
     double runTime;
     int numberOfCorrectWords;
+    string inputFile;
+    bool randomWorded;
 
   public:
     TType();
 
     void setWords(string fileName); // Custom text
-
-    void clearWords();
 
     void clearInput();
 

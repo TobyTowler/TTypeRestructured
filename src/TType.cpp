@@ -12,17 +12,18 @@
 
 // Custom text
 void TType::setWords(string fileName) {
+    this->randomWorded = false;
     if (fileName == "") {
         fileName = "default.txt";
     }
+    this->inputFile = "fileName";
     words.clear();
     string str;
     ifstream f;
-    f.open("./../text/" + fileName);
+    f.open("./../text/" + this->inputFile);
     getline(f, str);
     words = str;
 }
-void TType::clearWords() { setWords("default.txt"); }
 
 void TType::clearInput() { input.clear(); }
 
@@ -79,7 +80,9 @@ void TType::setLines() {
 
 TType::TType() {
     // this->setWords("longtext.txt");
-    this->setRandomWords("1000words.txt");
+    this->inputFile = "1000words.txt";
+    this->randomWorded = true;
+    this->setRandomWords(this->inputFile);
     this->input = {};
     this->ch = '\0';
     this->runTime = 0;
@@ -185,6 +188,9 @@ void TType::checkCharAndRealWPM() {
 }
 
 void TType::resetGame() {
+    if (this->randomWorded) {
+        setRandomWords(this->inputFile);
+    }
     input.clear();
     numberOfCorrectWords = 0;
 }
@@ -203,11 +209,13 @@ void TType::printScore() {
 }
 
 void TType::setRandomWords(string fileName) {
+    this->randomWorded = true;
     words.clear();
+    this->inputFile = fileName;
     // open files
     string str;
     ifstream f;
-    f.open("./../text/" + fileName);
+    f.open("./../text/" + this->inputFile);
     getline(f, str);
 
     // convert string to array

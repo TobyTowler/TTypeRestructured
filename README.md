@@ -1,21 +1,5 @@
 # TType - Rebuilt to be object-oriented
 
-## ScreenShots
-### Title
-![Title](./media/Title.png "Title")
-
-### Changing file
-![input editor](./media/ChangeFile.png "File change")
-
-### Playing/Score
-![Score](./media/Score.png "Score")
-
-> [!TODO]
-> Reset random words on retry
-> Remove press to start
-> Change menu inputs to numbers
-> 
-
 # About 
 - my first large unguided project 
 - very open to any advice
@@ -23,16 +7,28 @@
     - file is in text directory
     - all text is on the first line of the file
       
+# Notes
 ## Requirements
 - nCurses library
 - C++ compiler
 
+## ToDo
+- game modes
+    * y time for x words
+        + standard
+    * x words in y time
+- leaderboard
 
 # Releases
+## V1.7
+- Words are re-randomised on game reset
+- 
 ## V1.6
 - New file selector
     * vim style keybinds
     * contents of text directory shown in program
+- Improved start menu
+    * less annoying
 
 ## V1.5
 - select words in random order
@@ -68,3 +64,15 @@
 - first release
 - rebuilt to be object/class based and have better modularity
 
+
+
+
+# ScreenShots
+### Title
+![Title](./media/Title.png "Title")
+
+### Changing file
+![input editor](./media/ChangeFile.png "File change")
+
+### Playing/Score
+![Score](./media/Score.png "Score")
