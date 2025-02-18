@@ -5,12 +5,16 @@
 #include <chrono>
 #include <cstdlib>
 #include <fstream>
+#include <future>
 #include <map>
 #include <sstream>
 #include <string>
+#include <thread>
 #include <vector>
 
 // Custom text
+using std::chrono::steady_clock;
+
 void TType::setWords(string fileName) {
     this->randomWorded = false;
     if (fileName == "") {
@@ -87,6 +91,7 @@ TType::TType() {
     this->ch = '\0';
     this->runTime = 0;
     this->numberOfCorrectWords = 0;
+    this->timeTrial = false;
 }
 
 void TType::run() {
@@ -121,6 +126,39 @@ void TType::run() {
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> time = (end - start);
     runTime = time.count();
+
+    checkCharAndRealWPM();
+    printScore();
+}
+
+void TType::runTimeTrial() {
+
+    bool started = false;
+    int length = 0; // holds the line length
+    int i = 0;
+    runTime = 4;
+    chrono::steady_clock::time_point start;
+
+    do {
+        if (!started) {
+            start = steady_clock::now();
+            started = true;
+        }
+        checkChar();
+        ch = getch();
+
+        input.push_back(ch);
+        // addToInput(ch);
+
+        if (ch == KEY_BACKSPACE) {
+            if (i > 0)
+                i -= 2;
+            else
+                i--;
+            input.pop_back();
+            input.resize(i + 1);
+        }
+    } while (std::chrono::steady_clock::now() - start < chrono::seconds(int(runTime)));
 
     checkCharAndRealWPM();
     printScore();
@@ -225,12 +263,19 @@ void TType::setRandomWords(string fileName) {
     while (std::getline(ss, tmp, ' ')) {
         wordsArray.push_back(tmp);
     }
-    // printw("%zu", wordsArray.size());
-    // getch();
 
     // select words
+    int wordLimit;
+
+    if (timeTrial) {
+        // wordLimit = wordsArray.size();
+        wordLimit = 10;
+    } else {
+        wordLimit = 5;
+    }
+
     srand(time(NULL));
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < wordLimit; i++) {
         int num = rand() % wordsArray.size();
         words.append(wordsArray[num] + " ");
         wordsArray.erase(wordsArray.begin() + num);

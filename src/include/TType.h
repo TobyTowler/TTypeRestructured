@@ -16,6 +16,8 @@ class TType {
     bool randomWorded;
 
   public:
+    bool timeTrial;
+
     TType();
 
     void setWords(string fileName); // Custom text
@@ -25,6 +27,8 @@ class TType {
     void checkChar();
 
     void run();
+
+    void runTimeTrial();
 
     int getNumberOfSpaces();
 

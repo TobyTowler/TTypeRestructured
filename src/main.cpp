@@ -5,7 +5,6 @@
 int main() {
     nCursesCFG();
 
-    // callTitle();
     printTitle();
 
     TType game;
@@ -15,6 +14,10 @@ int main() {
 
         printSettings(game);
 
-        game.run();
+        if (game.timeTrial) {
+            game.runTimeTrial();
+        } else {
+            game.run();
+        }
     }
 }

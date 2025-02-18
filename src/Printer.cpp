@@ -2,9 +2,7 @@
 #include "include/Colours.h"
 #include "include/TType.h"
 #include "include/fileSelector.h"
-#include <chrono>
 #include <ncurses.h>
-#include <thread>
 
 using namespace std;
 
@@ -14,10 +12,6 @@ bool play;
  * title bar
  *************************************/
 void printTitle() {
-    // taken from https://www.asciiart.eu/text-to-ascii-art
-
-    // while (!play) {
-
     attron(COLOR_PAIR(NcursesColors::TITLEPAIR));
 
     clear();
@@ -33,27 +27,7 @@ void printTitle() {
            "                      \\/__/  \\/_/          \n\n"
            "              Press To Start\n\n");
 
-    // refresh();
-
-    // this_thread::sleep_for(std::chrono::milliseconds(600));
-    //
-    // clear();
-    //
-    // printw(""
-    //        "  ______  ______                            \n"
-    //        " /\\__  _\\/\\__  _\\                          \n"
-    //        " \\/_/\\ \\/\\/_/\\ \\/ __  __  _____      __    \n"
-    //        "    \\ \\ \\   \\ \\ \\/\\ \\/\\ \\/\\ '__`\\  /'__`\\  \n"
-    //        "     \\ \\ \\   \\ \\ \\ \\ \\_\\ \\ \\ \\L\\ \\/\\  __/  \n"
-    //        "      \\ \\_\\   \\ \\_\\/`____ \\ \\ ,__/\\ \\____\\ \n"
-    //        "       \\/_/    \\/_/`/___/> \\ \\ \\/  \\/____/ \n"
-    //        "                      /\\___/\\ \\_\\          \n"
-    //        "                      \\/__/  \\/_/          \n\n\n");
-    //
-    // refresh();
-    // this_thread::sleep_for(std::chrono::milliseconds(400));
     attroff(COLOR_PAIR(NcursesColors::TITLEPAIR));
-    // }
 }
 
 void waitForKeyPress() {
@@ -65,16 +39,6 @@ void waitForKeyPress() {
     }
 }
 
-void callTitle() {
-    // play = false;
-    // while (!play) {
-    //     thread printer(printTitle);
-    //     thread presser(waitForKeyPress);
-    //     printer.join();
-    //     presser.join();
-    // }
-}
-
 /*************************************
  * Method for setting/resetting game parameters
  * prints menu options
@@ -83,69 +47,34 @@ void printSettings(TType &obj) {
 
     attron(COLOR_PAIR(NcursesColors::SUBPAIR));
     printw(" 1. Play game \n");
-    printw(" 2. Change text file \n");
-    printw(" 3. Change text to random words from a file\n");
+    printw(" 2. Play time trial \n");
+    printw(" 3. Change text file \n");
+    printw(" 4. Change text to random words from a file\n");
     // printw(" 4. Title screen\n");
     printw(" Press 'CTRL + C' to quit \n");
     refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
 
     int cha;
-    bool play = false;
 
-    while (!play) {
+    cha = getch();
 
-        cha = getch();
+    if (toupper(cha) == '1') {
+        obj.timeTrial = false;
+    }
 
-        if (toupper(cha) == '1') {
-            play = true;
-        }
+    if (cha == '2') {
+        obj.timeTrial = true;
+        obj.setRandomWords("1000words.txt");
+    }
 
-        // Changing file
-        if (toupper(cha) == '2') {
-            play = true;
-            obj.setWords(fileSelector("./../text/"));
-        }
+    // Changing file
+    if (toupper(cha) == '3') {
+        obj.setWords(fileSelector("./../text/"));
+    }
 
-        // Changing file random words
-        if (toupper(cha) == '3') {
-            play = true;
-            // string str;
-            // bool search = false;
-            // while (!search) {
-            //     clear();
-            //     printw("Enter file name: ");
-            //     printw("%s", str.c_str());
-            //     /* printw("\n\n", str); */
-            //     refresh();
-            //     cha = getch();
-            //     switch (cha) {
-            //     case 10: // enter
-            //         search = true;
-            //         break;
-            //     case KEY_BACKSPACE: // backspace
-            //         if (str.length() > 0)
-            //             /* str = str.substr(0, str.length() - 1); */
-            //             str.pop_back();
-            //         else
-            //             str = "";
-            //         break;
-            //     default:
-            //         str += cha;
-            //         break;
-            //     }
-            // }
-
-            obj.setRandomWords(fileSelector("./../text/"));
-        }
-
-        // Title screen
-        // else if (toupper(cha) == '4') {
-        //     clear();
-        //     callTitle();
-        //     printSettings(obj);
-        //     obj.clearInput();
-        //     obj.clearWords();
-        // }
+    // Changing file random words
+    if (toupper(cha) == '4') {
+        obj.setRandomWords(fileSelector("./../text/"));
     }
 }
