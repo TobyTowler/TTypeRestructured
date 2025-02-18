@@ -10,9 +10,9 @@ int main() {
     TType game;
 
     while (true) {
-        game.resetGame();
-
         printSettings(game);
+
+        game.resetGame();
 
         if (game.timeTrial) {
             game.runTimeTrial();

@@ -13,16 +13,13 @@
 - C++ compiler
 
 ## ToDo
-- game modes
-    * y time for x words
-        + standard
-    * x words in y time
 - leaderboard
 
 # Releases
 ## V1.7
 - Words are re-randomised on game reset
-- 
+- TimeTrial mode added
+
 ## V1.6
 - New file selector
     * vim style keybinds
@@ -63,8 +60,6 @@
 ## V1.0
 - first release
 - rebuilt to be object/class based and have better modularity
-
-
 
 
 # ScreenShots

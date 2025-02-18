@@ -31,10 +31,10 @@ void TType::setWords(string fileName) {
 
 void TType::clearInput() { input.clear(); }
 
-/*************************************
+/*
  * Method for writing to screen
  * checking and colouring characters
- *************************************/
+ */
 void TType::checkChar() {
 
     int length = 0, height, width;
@@ -136,7 +136,7 @@ void TType::runTimeTrial() {
     bool started = false;
     int length = 0; // holds the line length
     int i = 0;
-    runTime = 4;
+    runTime = 15;
     chrono::steady_clock::time_point start;
 
     do {
@@ -146,9 +146,9 @@ void TType::runTimeTrial() {
         }
         checkChar();
         ch = getch();
+        i++;
 
         input.push_back(ch);
-        // addToInput(ch);
 
         if (ch == KEY_BACKSPACE) {
             if (i > 0)
@@ -269,7 +269,7 @@ void TType::setRandomWords(string fileName) {
 
     if (timeTrial) {
         // wordLimit = wordsArray.size();
-        wordLimit = 10;
+        wordLimit = 20;
     } else {
         wordLimit = 5;
     }

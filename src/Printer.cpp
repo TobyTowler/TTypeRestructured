@@ -50,31 +50,35 @@ void printSettings(TType &obj) {
     printw(" 2. Play time trial \n");
     printw(" 3. Change text file \n");
     printw(" 4. Change text to random words from a file\n");
-    // printw(" 4. Title screen\n");
     printw(" Press 'CTRL + C' to quit \n");
     refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
 
     int cha;
+    // bool play = false;
 
-    cha = getch();
+    while (true) {
+        cha = getch();
 
-    if (toupper(cha) == '1') {
-        obj.timeTrial = false;
-    }
+        if (cha == '1') {
+            obj.timeTrial = false;
+            break;
+        }
 
-    if (cha == '2') {
-        obj.timeTrial = true;
-        obj.setRandomWords("1000words.txt");
-    }
+        if (cha == '2') {
+            obj.timeTrial = true;
+            obj.setRandomWords("1000words.txt");
+            break;
+        }
 
-    // Changing file
-    if (toupper(cha) == '3') {
-        obj.setWords(fileSelector("./../text/"));
-    }
+        if (cha == '3') {
+            obj.setWords(fileSelector("./../text/"));
+            break;
+        }
 
-    // Changing file random words
-    if (toupper(cha) == '4') {
-        obj.setRandomWords(fileSelector("./../text/"));
+        if (cha == '4') {
+            obj.setRandomWords(fileSelector("./../text/"));
+            break;
+        }
     }
 }
