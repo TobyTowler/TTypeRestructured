@@ -8,13 +8,7 @@
  * fileSelector
  * keyboard up and down selector
  * search fuzzy find
- *
- *
  */
-
-// vector<string> includingFind(vector<string> dir){
-//
-// }
 
 string fileSelector(string path) {
     vector<string> files;

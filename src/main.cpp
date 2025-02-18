@@ -5,12 +5,11 @@
 int main() {
     nCursesCFG();
 
-    printTitle();
-
     TType game;
 
     while (true) {
-        printSettings(game);
+        printScreen(game);
+        // printSettings(game);
 
         game.resetGame();
 

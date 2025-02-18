@@ -12,11 +12,14 @@ class TType {
     int ch;
     double runTime;
     int numberOfCorrectWords;
-    string inputFile;
     bool randomWorded;
 
   public:
+    enum CurrentScreen { TITLE, SCORE };
+
+    string inputFile;
     bool timeTrial;
+    CurrentScreen currentScreen;
 
     TType();
 

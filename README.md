@@ -14,6 +14,8 @@
 
 ## ToDo
 - leaderboard
+- fix timetrailWPM
+- CMAKE install
 
 # Releases
 ## V1.7

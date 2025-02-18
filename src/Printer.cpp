@@ -6,8 +6,6 @@
 
 using namespace std;
 
-bool play;
-
 /*************************************
  * title bar
  *************************************/
@@ -30,32 +28,22 @@ void printTitle() {
     attroff(COLOR_PAIR(NcursesColors::TITLEPAIR));
 }
 
-void waitForKeyPress() {
-    while (!play) {
-        int ch = getch();
-        if (ch == 10) {
-            play = true;
-        }
-    }
-}
-
 /*************************************
  * Method for setting/resetting game parameters
  * prints menu options
  *************************************/
 void printSettings(TType &obj) {
+    int cha;
 
     attron(COLOR_PAIR(NcursesColors::SUBPAIR));
     printw(" 1. Play game \n");
     printw(" 2. Play time trial \n");
     printw(" 3. Change text file \n");
     printw(" 4. Change text to random words from a file\n");
+    printw(" 5. Title screen\n");
     printw(" Press 'CTRL + C' to quit \n");
     refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
-
-    int cha;
-    // bool play = false;
 
     while (true) {
         cha = getch();
@@ -67,18 +55,36 @@ void printSettings(TType &obj) {
 
         if (cha == '2') {
             obj.timeTrial = true;
-            obj.setRandomWords("1000words.txt");
+            obj.setRandomWords(obj.inputFile);
             break;
         }
 
         if (cha == '3') {
             obj.setWords(fileSelector("./../text/"));
-            break;
+            printScreen(obj);
         }
 
         if (cha == '4') {
             obj.setRandomWords(fileSelector("./../text/"));
-            break;
+            printScreen(obj);
         }
+
+        if (cha == '5') {
+            obj.currentScreen = TType::TITLE;
+            printScreen(obj);
+        }
+    }
+}
+
+void printScreen(TType &obj) {
+    clear();
+    auto screen = obj.currentScreen;
+    if (screen == TType::SCORE) {
+        obj.checkCharAndRealWPM();
+        obj.printScore();
+        printSettings(obj);
+    } else {
+        printTitle();
+        printSettings(obj);
     }
 }

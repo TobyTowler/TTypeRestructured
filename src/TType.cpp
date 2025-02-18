@@ -5,26 +5,21 @@
 #include <chrono>
 #include <cstdlib>
 #include <fstream>
-#include <future>
 #include <map>
 #include <sstream>
 #include <string>
-#include <thread>
 #include <vector>
 
-// Custom text
-using std::chrono::steady_clock;
-
 void TType::setWords(string fileName) {
-    this->randomWorded = false;
+    randomWorded = false;
     if (fileName == "") {
         fileName = "default.txt";
     }
-    this->inputFile = "fileName";
+    inputFile = fileName;
     words.clear();
     string str;
     ifstream f;
-    f.open("./../text/" + this->inputFile);
+    f.open("./../text/" + fileName);
     getline(f, str);
     words = str;
 }
@@ -84,14 +79,15 @@ void TType::setLines() {
 
 TType::TType() {
     // this->setWords("longtext.txt");
-    this->inputFile = "1000words.txt";
-    this->randomWorded = true;
-    this->setRandomWords(this->inputFile);
-    this->input = {};
-    this->ch = '\0';
-    this->runTime = 0;
-    this->numberOfCorrectWords = 0;
-    this->timeTrial = false;
+    inputFile = "1000words.txt";
+    randomWorded = true;
+    setRandomWords(inputFile);
+    input = {};
+    ch = '\0';
+    runTime = 0;
+    numberOfCorrectWords = 0;
+    timeTrial = false;
+    currentScreen = TITLE;
 }
 
 void TType::run() {
@@ -127,6 +123,7 @@ void TType::run() {
     std::chrono::duration<double> time = (end - start);
     runTime = time.count();
 
+    currentScreen = SCORE;
     checkCharAndRealWPM();
     printScore();
 }
@@ -136,12 +133,12 @@ void TType::runTimeTrial() {
     bool started = false;
     int length = 0; // holds the line length
     int i = 0;
-    runTime = 15;
+    runTime = 5;
     chrono::steady_clock::time_point start;
 
     do {
         if (!started) {
-            start = steady_clock::now();
+            start = std::chrono::steady_clock::now();
             started = true;
         }
         checkChar();
@@ -158,8 +155,12 @@ void TType::runTimeTrial() {
             input.pop_back();
             input.resize(i + 1);
         }
+        if (i + 1 > size(words)) {
+            break;
+        }
     } while (std::chrono::steady_clock::now() - start < chrono::seconds(int(runTime)));
 
+    currentScreen = SCORE;
     checkCharAndRealWPM();
     printScore();
 }
@@ -226,9 +227,9 @@ void TType::checkCharAndRealWPM() {
 }
 
 void TType::resetGame() {
-    if (this->randomWorded) {
-        setRandomWords(this->inputFile);
-    }
+    // if (randomWorded) {
+    //     setRandomWords(inputFile);
+    // }
     input.clear();
     numberOfCorrectWords = 0;
 }
@@ -247,13 +248,12 @@ void TType::printScore() {
 }
 
 void TType::setRandomWords(string fileName) {
-    this->randomWorded = true;
+    randomWorded = true;
     words.clear();
-    this->inputFile = fileName;
-    // open files
+    inputFile = fileName;
     string str;
     ifstream f;
-    f.open("./../text/" + this->inputFile);
+    f.open("./../text/" + fileName);
     getline(f, str);
 
     // convert string to array
@@ -269,7 +269,7 @@ void TType::setRandomWords(string fileName) {
 
     if (timeTrial) {
         // wordLimit = wordsArray.size();
-        wordLimit = 20;
+        wordLimit = 3;
     } else {
         wordLimit = 5;
     }
@@ -278,7 +278,6 @@ void TType::setRandomWords(string fileName) {
     for (int i = 0; i < wordLimit; i++) {
         int num = rand() % wordsArray.size();
         words.append(wordsArray[num] + " ");
-        wordsArray.erase(wordsArray.begin() + num);
     }
-    words.erase(words.begin() + words.length() - 1);
+    words.pop_back();
 }
