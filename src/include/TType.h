@@ -15,11 +15,8 @@ class TType {
     bool randomWorded;
 
   public:
-    enum CurrentScreen { TITLE, SCORE };
-
     string inputFile;
     bool timeTrial;
-    CurrentScreen currentScreen;
 
     TType();
 

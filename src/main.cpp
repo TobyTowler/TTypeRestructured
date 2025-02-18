@@ -7,10 +7,9 @@ int main() {
 
     TType game;
 
-    while (true) {
-        printScreen(game);
-        // printSettings(game);
+    callTitle(game);
 
+    while (true) {
         game.resetGame();
 
         if (game.timeTrial) {

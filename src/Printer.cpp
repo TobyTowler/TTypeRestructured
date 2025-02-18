@@ -41,9 +41,13 @@ void printSettings(TType &obj) {
     printw(" 3. Change text file \n");
     printw(" 4. Change text to random words from a file\n");
     printw(" 5. Title screen\n");
-    printw(" Press 'CTRL + C' to quit \n");
-    refresh();
     attroff(COLOR_PAIR(NcursesColors::SUBPAIR));
+
+    attron(COLOR_PAIR(NcursesColors::TITLEPAIR));
+    printw("\n Current input file: %s \n", obj.inputFile.c_str());
+    printw("\n Press 'CTRL + C' to quit \n");
+    refresh();
+    attroff(COLOR_PAIR(NcursesColors::TITLEPAIR));
 
     while (true) {
         cha = getch();
@@ -61,30 +65,24 @@ void printSettings(TType &obj) {
 
         if (cha == '3') {
             obj.setWords(fileSelector("./../text/"));
-            printScreen(obj);
+            callTitle(obj);
+            break;
         }
 
         if (cha == '4') {
             obj.setRandomWords(fileSelector("./../text/"));
-            printScreen(obj);
+            callTitle(obj);
+            break;
         }
 
         if (cha == '5') {
-            obj.currentScreen = TType::TITLE;
-            printScreen(obj);
+            callTitle(obj);
+            break;
         }
     }
 }
 
-void printScreen(TType &obj) {
-    clear();
-    auto screen = obj.currentScreen;
-    if (screen == TType::SCORE) {
-        obj.checkCharAndRealWPM();
-        obj.printScore();
-        printSettings(obj);
-    } else {
-        printTitle();
-        printSettings(obj);
-    }
+void callTitle(TType &obj) {
+    printTitle();
+    printSettings(obj);
 }

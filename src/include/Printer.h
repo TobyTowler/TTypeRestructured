@@ -5,5 +5,5 @@
 
 void printTitle();
 void printSettings(TType &obj);
-void printScreen(TType &obj);
+void callTitle(TType &obj);
 #endif // PRINTER_H

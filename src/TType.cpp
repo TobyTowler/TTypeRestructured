@@ -1,6 +1,7 @@
 #include "include/TType.h"
 #include "chrono"
 #include "include/Colours.h"
+#include "include/Printer.h"
 #include "ncurses.h"
 #include <chrono>
 #include <cstdlib>
@@ -87,7 +88,6 @@ TType::TType() {
     runTime = 0;
     numberOfCorrectWords = 0;
     timeTrial = false;
-    currentScreen = TITLE;
 }
 
 void TType::run() {
@@ -123,9 +123,9 @@ void TType::run() {
     std::chrono::duration<double> time = (end - start);
     runTime = time.count();
 
-    currentScreen = SCORE;
     checkCharAndRealWPM();
     printScore();
+    printSettings(*this);
 }
 
 void TType::runTimeTrial() {
@@ -160,9 +160,9 @@ void TType::runTimeTrial() {
         }
     } while (std::chrono::steady_clock::now() - start < chrono::seconds(int(runTime)));
 
-    currentScreen = SCORE;
     checkCharAndRealWPM();
     printScore();
+    printSettings(*this);
 }
 
 int TType::getNumberOfSpaces() {
@@ -227,9 +227,6 @@ void TType::checkCharAndRealWPM() {
 }
 
 void TType::resetGame() {
-    // if (randomWorded) {
-    //     setRandomWords(inputFile);
-    // }
     input.clear();
     numberOfCorrectWords = 0;
 }
