@@ -44,6 +44,8 @@ class TType {
 
     void setLines();
 
+    string readFile(string fileName);
+
     void setRandomWords(string fileName);
 };
 

@@ -16,13 +16,7 @@ void TType::setWords(string fileName) {
     if (fileName == "") {
         fileName = "default.txt";
     }
-    inputFile = fileName;
-    words.clear();
-    string str;
-    ifstream f;
-    f.open("./../text/" + fileName);
-    getline(f, str);
-    words = str;
+    words = readFile(fileName);
 }
 
 void TType::clearInput() { input.clear(); }
@@ -34,8 +28,6 @@ void TType::clearInput() { input.clear(); }
 void TType::checkChar() {
 
     int length = 0, height, width;
-
-    getmaxyx(stdscr, height, width);
 
     clear();
 
@@ -193,8 +185,6 @@ void TType::checkCharAndRealWPM() {
 
     int length = 0, height, width;
 
-    getmaxyx(stdscr, height, width);
-
     clear();
 
     // Chars user has written - RED-GREEN/BLACK
@@ -244,18 +234,24 @@ void TType::printScore() {
     refresh();
 }
 
+string TType::readFile(string fileName) {
+    string output;
+    string line;
+    ifstream read("./../text/" + fileName);
+    while (getline(read, line)) {
+        output += line;
+    }
+    read.close();
+    return output;
+}
+
 void TType::setRandomWords(string fileName) {
     randomWorded = true;
     words.clear();
-    inputFile = fileName;
-    string str;
-    ifstream f;
-    f.open("./../text/" + fileName);
-    getline(f, str);
 
     // convert string to array
     vector<string> wordsArray;
-    stringstream ss(str);
+    stringstream ss(readFile(fileName));
     string tmp;
     while (std::getline(ss, tmp, ' ')) {
         wordsArray.push_back(tmp);
